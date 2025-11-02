@@ -176,13 +176,18 @@ ruby Appium.rb
 ```
 Mobile-Automation-Test/
 ├── README.md                    # Documentación principal
+├── assets/                      # Recursos multimedia
+│   ├── ejecucion.gif           # GIF de demostración de la ejecución
+│   └── Terminal output.png     # Captura de pantalla de la salida de consola
 ├── Script/                      # Directorio principal del proyecto
 │   ├── Appium.rb               # Script principal de automatización
 │   ├── Gemfile                 # Dependencias de Ruby
 │   ├── Gemfile.lock            # Versiones bloqueadas de gemas
 │   ├── run_appium.sh           # Script de ejecución automática
 │   ├── appium_capabilities.json # Configuración de capabilities (referencia)
-│   └── README.md               # Documentación técnica detallada
+│   ├── README.md               # Documentación técnica detallada
+│   └── logs/                   # Logs del servidor Appium
+│       └── appium_server.log   # Logs de ejecución del servidor
 └── .ruby-version               # Versión de Ruby requerida
 ```
 
@@ -250,6 +255,16 @@ Extrayendo datos de los primeros 5 resultados...
    -> Producto 2: PlayStation 5 Digital Edition - $10,999.00
    ...
 ```
+
+## Demostración
+
+### Ejecución del Script
+
+![Ejecución del Script](assets/ejecucion.gif)
+
+### Salida de Consola
+
+![Salida de Consola](assets/Terminal%20output.png)
 
 ## Solución de Problemas
 
