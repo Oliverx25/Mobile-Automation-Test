@@ -1,153 +1,167 @@
-# Automation Project - Mercado Libre
+# Automatización - Mercado Libre
 
-This project contains a script to open the Mercado Libre application on an Android device using Appium.
+Script de automatización para la aplicación de Mercado Libre en dispositivos Android utilizando Appium y Ruby.
 
-## 📋 Prerequisites
+## Requisitos Previos
 
-1. **Node.js 20.19.0** (using nvm)
-2. **Appium Server** installed globally
-3. **Ruby 3.2.9** (recommended using rbenv or rvm)
-4. **Android device** connected or emulator
-5. **Mercado Libre application** installed on the device
+1. **Node.js 20.19.0** (usando nvm)
+2. **Appium Server** instalado globalmente
+3. **Ruby 3.2.9** (recomendado usar rbenv o rvm)
+4. **Dispositivo Android** conectado o emulador
+5. **Aplicación de Mercado Libre** instalada en el dispositivo
 
-## 🚀 Installation
+## Instalación
 
-### 1. Install Ruby dependencies
+### 1. Instalar dependencias de Ruby
+
 ```bash
 bundle install
 ```
 
-### 2. Verify Appium installation
+### 2. Verificar instalación de Appium
+
 ```bash
-# With nvm activated
+# Con nvm activado
 nvm use 20.19.0
 npm install -g appium
 ```
 
-### 3. Install Appium drivers (if necessary)
+### 3. Instalar drivers de Appium (si es necesario)
+
 ```bash
 appium driver install uiautomator2
 ```
 
-## 📱 Device Configuration
+## Configuración del Dispositivo
 
-### For Physical Device:
-1. Enable **Developer options** on your Android
-2. Enable **USB debugging**
-3. Connect the device via USB
-4. Verify connection: `adb devices`
-5. Change the UDID in `Appium.rb` line 25:
+### Para Dispositivo Físico
+
+1. Activar **Opciones de desarrollador** en tu Android
+2. Activar **Depuración USB**
+3. Conectar el dispositivo via USB
+4. Verificar conexión: `adb devices`
+5. Cambiar el UDID en `Appium.rb` línea 25:
    ```ruby
-   'appium:udid': 'YOUR_UDID_HERE', # Replace with your device's UDID
+   'appium:udid': 'TU_UDID_AQUI', # Reemplaza con el UDID de tu dispositivo
    ```
 
-### For Emulator:
-1. Create an Android emulator in Android Studio
-2. Start the emulator
-3. Verify that the UDID is `emulator-5554` (default)
+### Para Emulador
 
-## 🏃‍♂️ Execution
+1. Crear un emulador Android en Android Studio
+2. Iniciar el emulador
+3. Verificar que el UDID sea `emulator-5554` (por defecto)
 
-### Method 1: Automatic Script (Recommended)
+## Ejecución
+
+### Método 1: Script Automático (Recomendado)
+
 ```bash
 ./run_appium.sh
 ```
 
-This script:
-- Automatically switches to Node.js 20.19.0 using nvm
-- Starts Appium Server
-- Executes the Ruby script
-- Cleans up processes on completion
+Este script:
+- Cambia automáticamente a Node.js 20.19.0 usando nvm
+- Inicia Appium Server en segundo plano
+- Ejecuta el script de Ruby
+- Limpia los procesos al finalizar
 
-### Method 2: Manual
+### Método 2: Manual
+
 ```bash
-# Terminal 1: Start Appium Server
+# Terminal 1: Iniciar Appium Server
 nvm use 20.19.0
-appium server --port 4723
+appium
 
-# Terminal 2: Execute script
+# Terminal 2: Ejecutar script
 ruby Appium.rb
 ```
 
-## 📁 Project Structure
+## Estructura del Proyecto
 
 ```
-Automation Project with Appium/
-├── Appium.rb          # Main automation script
-├── Gemfile            # Ruby dependencies
-├── run_appium.sh      # Automatic execution script
-└── README.md          # This file
+Script/
+├── Appium.rb          # Script principal de automatización
+├── Gemfile            # Dependencias de Ruby
+├── run_appium.sh      # Script de ejecución automática
+├── appium_capabilities.json # Configuración de capabilities (referencia)
+└── README.md          # Este archivo
 ```
 
-## 🔧 Advanced Configuration
+## Configuración Avanzada
 
-### Change Device
-Edit line 25 in `Appium.rb`:
+### Cambiar Dispositivo
+
+Edita la línea 25 en `Appium.rb`:
 ```ruby
-'appium:udid': 'YOUR_UDID_HERE',
+'appium:udid': 'TU_UDID_AQUI',
 ```
 
-### Change Timeout
-Edit line 30 in `Appium.rb`:
+### Cambiar Timeout
+
+Edita la línea 29 en `Appium.rb`:
 ```ruby
-'appium:newCommandTimeout': 60, # Seconds
+'appium:newCommandTimeout': 300, # Segundos
 ```
 
-### Change Appium Port
-Edit line 47 in `Appium.rb`:
+### Cambiar Puerto de Appium
+
+Edita la línea 43 en `Appium.rb`:
 ```ruby
-server_url = 'http://localhost:4723' # Change port if necessary
+server_url = 'http://localhost:4723' # Cambia el puerto si es necesario
 ```
 
-## 🐛 Troubleshooting
+## Solución de Problemas
 
 ### Error: "Device not found"
-- Verify the device is connected: `adb devices`
-- Make sure the UDID is correct
-- Verify USB debugging is enabled
+
+- Verifica que el dispositivo esté conectado: `adb devices`
+- Asegúrate de que el UDID sea correcto
+- Verifica que la depuración USB esté activada
 
 ### Error: "App not installed"
-- Install Mercado Libre on your device
-- Verify the package name is correct: `com.mercadolibre`
+
+- Instala Mercado Libre en tu dispositivo
+- Verifica que el package name sea correcto: `com.mercadolibre`
 
 ### Error: "Appium Server not running"
-- Verify Appium is installed: `appium --version`
-- Make sure port 4723 is free
-- Review Appium logs for more details
+
+- Verifica que Appium esté instalado: `appium --version`
+- Asegúrate de que el puerto 4723 esté libre
+- Revisa los logs de Appium para más detalles
 
 ### Error: "Node version mismatch"
-- Make sure to use Node.js 20.19.0: `nvm use 20.19.0`
-- Verify nvm is correctly installed
 
-## 📝 Logs
+- Asegúrate de usar Node.js 20.19.0: `nvm use 20.19.0`
+- Verifica que nvm esté instalado correctamente
 
-The script generates detailed logs with colors:
-- 🔵 **Blue**: General information
-- 🟢 **Green**: Successful operations
-- 🟡 **Yellow**: Warnings
-- 🔴 **Red**: Errors
+## Funcionalidad Actual
 
-## 🎯 Current Functionality
+El script ejecuta el siguiente flujo:
 
-The current script:
-1. ✅ Starts an Appium session
-2. ✅ Opens the Mercado Libre application
-3. ✅ Verifies the app opened correctly
-4. ✅ Keeps the session open for 10 seconds
-5. ✅ Closes the session cleanly
+1. Inicia una sesión de Appium
+2. Abre la aplicación de Mercado Libre
+3. Busca "playstation 5" en la barra de búsqueda
+4. Aplica filtro de condición "Nuevos"
+5. Aplica filtro de envíos "Local"
+6. Ordena resultados por "Mayor precio"
+7. Extrae y muestra los primeros 5 productos con nombre y precio
+8. Cierra la sesión limpiamente
 
-## 🔮 Next Steps
+## Logs
 
-- [ ] Add more interactions with the app
-- [ ] Implement product search
-- [ ] Add element validations
-- [ ] Create execution reports
-- [ ] Support for multiple devices
+El script genera logs detallados con colores:
+- **Azul**: Información general
+- **Verde**: Operaciones exitosas
+- **Amarillo**: Advertencias
+- **Rojo**: Errores
 
-## 📞 Support
+Los logs del servidor Appium se guardan en el directorio `logs/appium_server.log` cuando se ejecuta con el script automático.
 
-If you have problems:
-1. Review error logs
-2. Verify device configuration
-3. Make sure all dependencies are installed
-4. Consult the official Appium documentation
+## Soporte
+
+Si tienes problemas:
+
+1. Revisa los logs de error
+2. Verifica la configuración del dispositivo
+3. Asegúrate de que todas las dependencias estén instaladas
+4. Consulta la documentación oficial de Appium

@@ -1,383 +1,350 @@
-# 🤖 Mobile Automation - Mercado Libre
+# Automatización Mobile - Mercado Libre
 
-Mobile test automation project for Mercado Libre mobile application on Android using **Ruby** and **Appium**. This project implements a complete product search and filtering flow with result validation.
+Proyecto de automatización de pruebas para la aplicación móvil de Mercado Libre en Android utilizando **Ruby** y **Appium**. Implementa un flujo completo de búsqueda y filtrado de productos con validación de resultados.
 
-## 📋 Project Description
+## Descripción del Proyecto
 
-This project automates a functional test case for the Mercado Libre application on Android devices. The script executes a complete flow that includes:
+Este proyecto automatiza un caso de prueba funcional para la aplicación de Mercado Libre en dispositivos Android. El script ejecuta un flujo completo que incluye:
 
-- ✅ Application launch
-- ✅ Product search
-- ✅ Multiple filter application
-- ✅ Result sorting
-- ✅ Product data extraction and display
+- Apertura de la aplicación
+- Búsqueda de productos
+- Aplicación de múltiples filtros
+- Ordenamiento de resultados
+- Extracción y visualización de datos de productos
 
-## 🎯 Objective
+## Objetivo
 
-Validate the complete search and filtering flow in the Mercado Libre application, specifically:
+Validar el flujo completo de búsqueda y filtrado en la aplicación de Mercado Libre:
 
-1. Open the Mercado Libre application on an Android device
-2. Search for the term "playstation 5" in the search bar
-3. Apply condition filter "New" (Nuevos)
-4. Apply location filter "Local" (CDMX)
-5. Sort results by "highest to lowest price"
-6. Extract and display in console the name and price of the first 5 products
+1. Abrir la aplicación de Mercado Libre en un dispositivo Android
+2. Buscar el término "playstation 5" en la barra de búsqueda
+3. Aplicar filtro de condición "Nuevos"
+4. Aplicar filtro de ubicación "Local" (CDMX)
+5. Ordenar resultados por "mayor a menor precio"
+6. Extraer y mostrar en consola el nombre y precio de los primeros 5 productos
 
-## 🚀 Implemented Features
+## Requisitos Previos
 
-### ✅ Complete Features
-
-- **Appium session initialization**: Automatic connection with Appium server
-- **Application launch**: Activation and opening of Mercado Libre
-- **Product search**: Automated search with multiple locator handling
-- **Filter system**:
-  - Condition filter (New)
-  - Shipping filter (Local)
-  - Price sorting (Highest to lowest)
-- **Data extraction**: Product name and price retrieval
-- **Detailed logging**: Color-coded log system for better visibility
-- **Error handling**: Recovery from failures with multiple localization strategies
-
-### 🔧 Technical Features
-
-- Multiple locator handling (ID, XPath, content-desc)
-- Intelligent scrolling for list navigation
-- Implicit and explicit waits for synchronization
-- Coordinate-based clicks as fallback
-- Element validation before interaction
-
-## 📦 Prerequisites
-
-### Base Software
-- **Ruby 3.2.9** (recommended using rbenv or rvm)
-- **Node.js 20.19.0** (using nvm)
+### Software Base
+- **Ruby 3.2.9** (recomendado usar rbenv o rvm)
+- **Node.js 20.19.0** (usando nvm)
 - **NPM 10.8.2**
-- **Bundler** for Ruby dependency management
+- **Bundler** para gestión de dependencias Ruby
 
-### Automation Tools
-- **Appium Server** installed globally
-- **Appium Driver UiAutomator2** for Android
-- **Appium Driver XCUITest** for iOS (optional)
+### Herramientas de Automatización
+- **Appium Server** instalado globalmente
+- **Appium Driver UiAutomator2** para Android
+- **Appium Driver XCUITest** para iOS (opcional)
 
-### Device
-- **Physical Android device** with USB debugging enabled
-- **Or configured Android emulator**
-- **Mercado Libre application** installed
+### Dispositivo
+- Dispositivo Android físico con depuración USB activada, o emulador Android configurado
+- Aplicación de Mercado Libre instalada
 
-### Additional Tools
-- **ADB** (Android Debug Bridge) for device management
-- **Appium Doctor** for installation verification (optional)
+### Herramientas Adicionales
+- **ADB** (Android Debug Bridge) para gestión de dispositivos
+- **Appium Doctor** para verificación de instalación (opcional)
 
-## 📥 Installation
+## Instalación
 
-### 1. Clone the Repository
+### 1. Clonar el Repositorio
 
 ```bash
 git clone <repository-url>
 cd Mobile-Automation-Test
 ```
 
-### 2. Configure Ruby
+### 2. Configurar Ruby
 
 ```bash
-# If using rbenv
+# Si usas rbenv
 rbenv install 3.2.9
 rbenv local 3.2.9
 
-# If using rvm
+# Si usas rvm
 rvm install 3.2.9
 rvm use 3.2.9
 ```
 
-### 3. Install Ruby Dependencies
+### 3. Instalar Dependencias de Ruby
 
 ```bash
 cd Script
 bundle install
 ```
 
-### 4. Configure Node.js
+### 4. Configurar Node.js
 
 ```bash
-# Install nvm if not installed
-# See: https://github.com/nvm-sh/nvm#installing-and-updating
+# Instalar nvm si no está instalado
+# Ver: https://github.com/nvm-sh/nvm#installing-and-updating
 
-# Install Node.js 20.19.0
+# Instalar Node.js 20.19.0
 nvm install 20.19.0
 nvm use 20.19.0
 ```
 
-### 5. Install Appium
+### 5. Instalar Appium
 
 ```bash
-# With nvm activated
+# Con nvm activado
 npm install -g appium
 
-# Install necessary drivers
-appium driver install uiautomator2  # For Android
-appium driver install xcuitest      # For iOS (optional)
+# Instalar drivers necesarios
+appium driver install uiautomator2  # Para Android
+appium driver install xcuitest      # Para iOS (opcional)
 ```
 
-### 6. Verify Installation (Optional)
+### 6. Verificar Instalación (Opcional)
 
 ```bash
 npm install -g @appium/doctor
 appium-doctor
 ```
 
-## ⚙️ Configuration
+## Configuración
 
-### For Physical Android Device
+### Para Dispositivo Físico Android
 
-1. **Enable Developer Options** on your Android device
-2. **Enable USB Debugging**
-3. **Connect the device** via USB
-4. **Verify connection**:
+1. Activar **Opciones de Desarrollador** en tu dispositivo Android
+2. Activar **Depuración USB**
+3. Conectar el dispositivo vía USB
+4. Verificar conexión:
    ```bash
    adb devices
    ```
-5. **Get the UDID** of the device from the output above
-6. **Update the UDID** in `Script/Appium.rb` line 25:
+5. Obtener el UDID del dispositivo de la salida anterior
+6. Actualizar el UDID en `Script/Appium.rb` línea 25:
    ```ruby
-   'appium:udid': 'YOUR_UDID_HERE',  # Replace with your UDID
+   'appium:udid': 'TU_UDID_AQUI',  # Reemplaza con tu UDID
    ```
 
-### For Android Emulator
+### Para Emulador Android
 
-1. **Create an emulator** in Android Studio
-2. **Start the emulator**
-3. **Verify that the UDID** is `emulator-5554` (by default)
-4. If different, update in `Script/Appium.rb` line 25
+1. Crear un emulador en Android Studio
+2. Iniciar el emulador
+3. Verificar que el UDID sea `emulator-5554` (por defecto)
+4. Si es diferente, actualizar en `Script/Appium.rb` línea 25
 
-### Advanced Configuration
+### Configuración Avanzada
 
-You can customize other parameters in `Script/Appium.rb`:
+Puedes personalizar otros parámetros en `Script/Appium.rb`:
 
-- **Appium Port** (line 43):
+- **Puerto de Appium** (línea 43):
   ```ruby
-  server_url = 'http://localhost:4723'  # Change port if necessary
+  server_url = 'http://localhost:4723'  # Cambiar puerto si es necesario
   ```
 
-- **Command timeout** (line 29):
+- **Timeout de comandos** (línea 29):
   ```ruby
-  'appium:newCommandTimeout': 300,  # Seconds
+  'appium:newCommandTimeout': 300,  # Segundos
   ```
 
-## 🏃‍♂️ Usage
+## Uso
 
-### Method 1: Automatic Script (Recommended)
+### Método 1: Script Automático (Recomendado)
 
-From the `Script` directory:
+Desde el directorio `Script`:
 
 ```bash
 cd Script
 ./run_appium.sh
 ```
 
-This script:
-- ✅ Automatically switches to Node.js 20.19.0 using nvm
-- ✅ Starts Appium Server in the background
-- ✅ Executes the Ruby script
-- ✅ Cleans up processes on completion
+Este script:
+- Cambia automáticamente a Node.js 20.19.0 usando nvm
+- Inicia Appium Server en segundo plano
+- Ejecuta el script de Ruby
+- Limpia los procesos al finalizar
 
-### Method 2: Manual Execution
+### Método 2: Ejecución Manual
 
-**Terminal 1 - Start Appium Server:**
+**Terminal 1 - Iniciar Appium Server:**
 ```bash
 cd Script
 nvm use 20.19.0
-appium server --port 4723
+appium
 ```
 
-**Terminal 2 - Execute Script:**
+**Terminal 2 - Ejecutar Script:**
 ```bash
 cd Script
 ruby Appium.rb
 ```
 
-## 📁 Project Structure
+## Estructura del Proyecto
 
 ```
 Mobile-Automation-Test/
-├── README.md                    # This file - Main documentation
-├── Script/                      # Main project directory
-│   ├── Appium.rb               # Main automation script
-│   ├── Gemfile                 # Ruby dependencies
-│   ├── Gemfile.lock            # Locked gem versions
-│   ├── run_appium.sh           # Automatic execution script
-│   ├── appium_capabilities.json # Capabilities configuration (reference)
-│   └── README.md               # Detailed technical documentation
-└── .ruby-version               # Required Ruby version
+├── README.md                    # Documentación principal
+├── Script/                      # Directorio principal del proyecto
+│   ├── Appium.rb               # Script principal de automatización
+│   ├── Gemfile                 # Dependencias de Ruby
+│   ├── Gemfile.lock            # Versiones bloqueadas de gemas
+│   ├── run_appium.sh           # Script de ejecución automática
+│   ├── appium_capabilities.json # Configuración de capabilities (referencia)
+│   └── README.md               # Documentación técnica detallada
+└── .ruby-version               # Versión de Ruby requerida
 ```
 
-## 🔍 Technical Details
+## Detalles Técnicos
 
-### Used Versions
+### Versiones Utilizadas
 
-- **Ruby**: 3.2.9
-- **Node.js**: 20.19.0
-- **NPM**: 10.8.2
-- **Appium**: Latest stable version
-- **appium_lib**: ~> 12.0
-- **colorize**: ~> 0.8.1
+- Ruby: 3.2.9
+- Node.js: 20.19.0
+- NPM: 10.8.2
+- Appium: Última versión estable
+- appium_lib: ~> 12.0
+- colorize: ~> 0.8.1
 
-### Main Dependencies
+### Dependencias Principales
 
-- `appium_lib`: Ruby library for Appium
-- `logger`: Ruby logging system
-- `colorize`: Console colors for better readability
+- `appium_lib`: Librería Ruby para Appium
+- `logger`: Sistema de logging de Ruby
+- `colorize`: Colores en consola para mejor legibilidad
 
-### Code Architecture
+### Arquitectura del Código
 
-The script is structured in a `MercadoLibreAppOpener` class that encapsulates all automation logic:
+El script está estructurado en una clase `MercadoLibreAppOpener` que encapsula toda la lógica de automatización:
 
-- **Initialization**: Capabilities and logger configuration
-- **Session management**: Appium session start and end
-- **Interactions**: Methods for each flow step
-- **Data extraction**: UI element parsing to obtain information
-- **Error handling**: Recovery with multiple strategies
+- **Inicialización**: Configuración de capabilities y logger
+- **Gestión de sesión**: Inicio y cierre de sesión de Appium
+- **Interacciones**: Métodos para cada paso del flujo
+- **Extracción de datos**: Parsing de elementos UI para obtener información
+- **Manejo de errores**: Recuperación con múltiples estrategias
 
-## 📊 Execution Flow
+## Flujo de Ejecución
 
-1. **Start**: Connects with Appium Server
-2. **Launch**: Activates and opens Mercado Libre application
-3. **Search**: Locates search bar and searches for "playstation 5"
-4. **Filters**: Opens filter panel
-5. **Filter application**:
-   - Condition: "New"
-   - Shipping: "Local"
-   - Sorting: "Highest price"
-6. **Apply**: Clicks "View results"
-7. **Extraction**: Gets first 5 products with name and price
-8. **Close**: Closes session cleanly
+1. **Inicio**: Conecta con Appium Server
+2. **Apertura**: Activa y abre la aplicación de Mercado Libre
+3. **Búsqueda**: Localiza la barra de búsqueda y busca "playstation 5"
+4. **Filtros**: Abre el panel de filtros
+5. **Aplicación de filtros**:
+   - Condición: "Nuevos"
+   - Envíos: "Local"
+   - Ordenamiento: "Mayor precio"
+6. **Aplicar**: Hace clic en "Ver resultados"
+7. **Extracción**: Obtiene los primeros 5 productos con nombre y precio
+8. **Cierre**: Cierra la sesión limpiamente
 
-## 📝 Logs and Output
+## Logs y Salida
 
-The script generates detailed logs with a color system:
+El script genera logs detallados con sistema de colores:
 
-- 🔵 **Blue/Cyan**: General information and process steps
-- 🟢 **Green**: Successful operations
-- 🟡 **Yellow**: Warnings (elements not found, but continues)
-- 🔴 **Red**: Critical errors
+- **Azul/Cyan**: Información general y pasos del proceso
+- **Verde**: Operaciones exitosas
+- **Amarillo**: Advertencias (elementos no encontrados, pero continúa)
+- **Rojo**: Errores críticos
 
-### Example Output
+### Ejemplo de Salida
 
 ```
-==> Appium session active - App opened
-==> Mercado Libre opened successfully
-==> Search performed successfully
-==> 'New' filter applied successfully
-==> 'Local' filter applied successfully
-==> 'Highest price' filter applied successfully
-Extracting data from the first 5 results...
-   -> Product 1: PlayStation 5 - $12,999.00
-   -> Product 2: PlayStation 5 Digital Edition - $10,999.00
+==> Sesión de Appium activa - App abierta
+==> Mercado Libre abierto correctamente
+==> Búsqueda realizada correctamente
+==> Filtro 'Nuevo' aplicado correctamente
+==> Filtro 'Local' aplicado correctamente
+==> Filtro 'Mayor precio' aplicado correctamente
+Extrayendo datos de los primeros 5 resultados...
+   -> Producto 1: PlayStation 5 - $12,999.00
+   -> Producto 2: PlayStation 5 Digital Edition - $10,999.00
    ...
 ```
 
-## 🐛 Troubleshooting
+## Solución de Problemas
 
 ### Error: "Device not found"
 
-**Solution:**
+**Solución:**
 ```bash
-# Verify device connection
+# Verificar conexión del dispositivo
 adb devices
 
-# If it doesn't appear, try:
+# Si no aparece, probar:
 adb kill-server
 adb start-server
 adb devices
 ```
 
-- Verify that the UDID is correct in `Appium.rb`
-- Ensure USB debugging is enabled
-- Try with a different USB cable
+- Verificar que el UDID sea correcto en `Appium.rb`
+- Asegurar que la depuración USB esté activada
+- Probar con un cable USB diferente
 
 ### Error: "App not installed"
 
-**Solution:**
-- Install Mercado Libre from Play Store
-- Verify package name: `com.mercadolibre`
-- Verify app is installed: `adb shell pm list packages | grep mercadolibre`
+**Solución:**
+- Instalar Mercado Libre desde Play Store
+- Verificar el package name: `com.mercadolibre`
+- Verificar que la app esté instalada: `adb shell pm list packages | grep mercadolibre`
 
 ### Error: "Appium Server not running"
 
-**Solution:**
+**Solución:**
 ```bash
-# Verify Appium is installed
+# Verificar que Appium esté instalado
 appium --version
 
-# Verify port 4723 is free
+# Verificar que el puerto 4723 esté libre
 lsof -i :4723
 
-# If occupied, kill the process
+# Si está ocupado, matar el proceso
 kill -9 <PID>
 
-# Or use another port in Appium.rb
+# O usar otro puerto en Appium.rb
 ```
 
 ### Error: "Node version mismatch"
 
-**Solution:**
+**Solución:**
 ```bash
-# Make sure to use the correct version
+# Asegurarse de usar la versión correcta
 nvm use 20.19.0
 
-# If not installed
+# Si no está instalada
 nvm install 20.19.0
 
-# Verify version
+# Verificar versión
 node --version
 ```
 
 ### Error: "Element not found"
 
-**Solution:**
-- Mercado Libre application may have changed its UI
-- Verify locators in the script
-- Use `adb shell uiautomator dump` to inspect current UI
-- Review logs to see which locator failed
+**Solución:**
+- La aplicación de Mercado Libre puede haber cambiado su UI
+- Verificar los localizadores en el script
+- Usar `adb shell uiautomator dump` para inspeccionar la UI actual
+- Revisar los logs para ver qué localizador falló
 
-## 🎯 Acceptance Criteria
+## Criterios de Aceptación
 
-- ✅ Test executes without manual intervention
-- ✅ Script correctly identifies UI elements on Android
-- ✅ Filters are applied according to specification
-- ✅ Names and prices of first 5 products are displayed in console
-- ✅ Sorting is applied correctly (highest to lowest price)
+- El test se ejecuta sin intervención manual
+- El script identifica correctamente los elementos UI en Android
+- Los filtros se aplican según la especificación
+- Se muestran los nombres y precios de los primeros 5 productos en consola
+- El ordenamiento se aplica correctamente (mayor a menor precio)
 
-## 📈 Future Improvements (Pending)
+## Mejoras Futuras
 
-- [ ] Generate execution report
-- [ ] Include screenshots for each step
-- [ ] Full iOS support (partially implemented)
+- Generar reporte de ejecución
+- Incluir capturas de pantalla para cada paso
+- Soporte completo para iOS (parcialmente implementado)
 
-## 👤 Author
+## Autor
 
 **Oliver Olvera**
 
-## 📄 License
+## Licencia
 
-This project is for educational and demonstration purposes.
+Este proyecto es de uso educativo y de demostración.
 
-## 📞 Support
+## Enlaces Útiles
 
-If you encounter issues:
-
-1. Review the [Troubleshooting](#-troubleshooting) section
-2. Consult `Script/README.md` for detailed technical documentation
-3. Verify that all dependencies are correctly installed
-4. Review Appium logs for more details
-5. Consult [official Appium documentation](https://appium.io/docs/en/latest/)
-
-## 🔗 Useful Links
-
-- [Appium Documentation](https://appium.io/docs/en/latest/)
+- [Documentación de Appium](https://appium.io/docs/en/latest/)
 - [Appium Ruby Client](https://github.com/appium/ruby_lib)
 - [Android UI Automator](https://developer.android.com/training/testing/ui-automator)
 - [Ruby Documentation](https://www.ruby-lang.org/en/documentation/)
+- [Deepwiki Documentación](https://deepwiki.com/Oliverx25/Mobile-Automation-Test/1-overview)
 
 ---
 
-**Last updated**: November 2025
+**Última actualización**: Noviembre 2025
