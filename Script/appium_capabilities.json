@@ -1,0 +1,19 @@
+{
+  "platformName": "Android",
+  "appium:options": {
+    "automationName": "UiAutomator2",
+    "deviceName": "Android Emulator",
+    "udid": "emulator-5554",
+    "appPackage": "com.mercadolibre",
+    "appActivity": "com.mercadolibre.splash.SplashActivity",
+    "newCommandTimeout": 300,
+    "noReset": true,
+    "fullReset": false,
+    "autoGrantPermissions": true,
+    "skipServerInstallation": false,
+    "skipDeviceInitialization": true,
+    "disableIdLocatorAutocompletion": false,
+    "skipUnlock": true
+  }
+}
+

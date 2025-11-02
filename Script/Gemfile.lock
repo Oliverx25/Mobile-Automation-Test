@@ -1,0 +1,67 @@
+GEM
+  remote: https://rubygems.org/
+  specs:
+    appium_lib (12.2.2)
+      appium_lib_core (~> 6.0)
+      nokogiri (~> 1.8, >= 1.8.1)
+      tomlrb (>= 1.1, < 3.0)
+    appium_lib_core (6.5.0)
+      faye-websocket (~> 0.11.0)
+      selenium-webdriver (~> 4.2, < 4.11)
+    base64 (0.3.0)
+    colorize (0.8.1)
+    eventmachine (1.2.7)
+    faye-websocket (0.11.4)
+      eventmachine (>= 0.12.0)
+      websocket-driver (>= 0.5.1, < 0.8.0)
+    logger (1.7.0)
+    nokogiri (1.18.10-aarch64-linux-gnu)
+      racc (~> 1.4)
+    nokogiri (1.18.10-aarch64-linux-musl)
+      racc (~> 1.4)
+    nokogiri (1.18.10-arm-linux-gnu)
+      racc (~> 1.4)
+    nokogiri (1.18.10-arm-linux-musl)
+      racc (~> 1.4)
+    nokogiri (1.18.10-arm64-darwin)
+      racc (~> 1.4)
+    nokogiri (1.18.10-x86_64-darwin)
+      racc (~> 1.4)
+    nokogiri (1.18.10-x86_64-linux-gnu)
+      racc (~> 1.4)
+    nokogiri (1.18.10-x86_64-linux-musl)
+      racc (~> 1.4)
+    racc (1.8.1)
+    rexml (3.4.4)
+    rubyzip (2.4.1)
+    selenium-webdriver (4.10.0)
+      rexml (~> 3.2, >= 3.2.5)
+      rubyzip (>= 1.2.2, < 3.0)
+      websocket (~> 1.0)
+    tomlrb (2.0.3)
+    websocket (1.2.11)
+    websocket-driver (0.7.7)
+      base64
+      websocket-extensions (>= 0.1.0)
+    websocket-extensions (0.1.5)
+
+PLATFORMS
+  aarch64-linux-gnu
+  aarch64-linux-musl
+  arm-linux-gnu
+  arm-linux-musl
+  arm64-darwin
+  x86_64-darwin
+  x86_64-linux-gnu
+  x86_64-linux-musl
+
+DEPENDENCIES
+  appium_lib (~> 12.0)
+  colorize (~> 0.8.1)
+  logger
+
+RUBY VERSION
+   ruby 3.2.9p265
+
+BUNDLED WITH
+   2.7.2
