@@ -846,6 +846,63 @@ class MercadoLibreAppOpener
 
       @logger.info("Extrayendo datos de los primeros 5 resultados...".colorize(:cyan))
 
+      # Detectar si hay un anuncio al inicio y hacer scroll para omitirlo
+      begin
+        ad_element = @driver.find_element({ xpath: "//androidx.compose.ui.viewinterop.ViewFactoryHolder" })
+        if ad_element && ad_element.displayed?
+          @logger.info("--> Anuncio detectado, realizando scroll para omitirlo...".colorize(:cyan))
+
+          # Hacer scroll lentamente hasta que el anuncio ya no sea visible
+          # Usar la misma posición que en el scroll del 5to producto (left: 150, top: 1000, height: 1100)
+          # direction: "up" para mover contenido hacia arriba y ocultar el anuncio
+          max_scrolls = 10
+          scroll_count = 0
+          ad_still_visible = true
+
+          while ad_still_visible && scroll_count < max_scrolls
+            begin
+              # Verificar si el anuncio está visible
+              ad_element_check = @driver.find_element({ xpath: "//androidx.compose.ui.viewinterop.ViewFactoryHolder" })
+              if ad_element_check && ad_element_check.displayed?
+                # Hacer un scroll pequeño y lento
+                @driver.execute_script("mobile: swipeGesture", {
+                  "left" => 150,
+                  "top" => 1000,
+                  "width" => 1,
+                  "height" => 1100,
+                  "direction" => "up",
+                  "percent" => 0.15,
+                  "speed" => 1000  # Velocidad más lenta (mayor valor = más lento)
+                })
+
+                sleep(1) # Esperar a que se complete cada scroll
+                scroll_count += 1
+
+                if scroll_count % 2 == 0
+                  @logger.info("--> Scroll #{scroll_count}: Verificando visibilidad del anuncio...".colorize(:cyan))
+                end
+              else
+                ad_still_visible = false
+                @logger.info("--> Anuncio oculto después de #{scroll_count} scroll(s)".colorize(:green))
+              end
+            rescue => e
+              # Si no se encuentra el elemento, significa que ya no está visible (éxito)
+              ad_still_visible = false
+              @logger.info("--> Anuncio oculto después de #{scroll_count} scroll(s)".colorize(:green))
+            end
+          end
+
+          if scroll_count >= max_scrolls
+            @logger.warn("--> Se alcanzó el máximo de scrolls (#{max_scrolls}), continuando...".colorize(:yellow))
+          end
+
+          sleep(1) # Esperar adicional para asegurar que todo esté estable
+        end
+      rescue => e
+        # Si no se encuentra el anuncio, continuar normalmente
+        # No es un error, simplemente no hay anuncio
+      end
+
       # Extraer los primeros 4 resultados (ya renderizados) usando xpath específicos
       (1..4).each do |index|
         begin
@@ -869,7 +926,7 @@ class MercadoLibreAppOpener
         "left" => 150,
         "top" => 1000,
         "width" => 1,
-        "height" => 1100,
+        "height" => 500,
         "direction" => "up",
         "percent" => 1.0,
         "speed" => 500
